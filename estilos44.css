@@ -1,0 +1,80 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+button{
+    width: 150px;
+    height: 40px;
+    background-color: #025;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.curso{
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    border: 4px solid #888;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.selecionado{
+    background-color: #800 !important;
+    color: #fcc !important;
+    border-color: #f00 !important;
+}
+.c1{
+    background-color: #ccc;
+    color: #444;
+}
+.c2{
+    background-color: #444;
+    color: #ccc;
+}
+
+.caixa{
+    border: 4px solid #000;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    height: 500px;
+    width: 300px;
+}
+
+.btn_lixeira{
+    width: 25px;
+    cursor:pointer;
+}
+
+.caixaFuncionalidades{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+.comandos{
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#caixaNovoCurso input{
+    margin: 10px;
+    padding: 5px;
+}
