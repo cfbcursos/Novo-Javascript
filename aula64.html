@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aula 64 de Javascript</title>
+        <link rel="stylesheet" type="text/css" href="estilos64.css" />
+    </head>
+    <body>
+        <div id="criarCarro" class="criarCarro">
+            <div class="campoForm">
+                <label>Nome</label>
+                <input type="text" name="f_nome" id="f_nome" value=""/>
+            </div>
+            <div class="campoForm">
+                <label>Portas</label>
+                <input type="number" name="f_portas" id="f_portas" value="0"/>
+            </div>
+            <div class="campoForm">
+                <label>Blindagem</label>
+                <input type="number" name="f_blindagem" id="f_blindagem" disabled value="0"/>
+            </div>
+            <div class="campoForm">
+                <label>Munição</label>
+                <input type="number" name="f_municao" id="f_municao" disabled value="0"/>
+            </div>
+            <div class="campoForm">
+                <label>Tipo</label>
+                <div class="radio">
+                    <input type="radio" name="f_tipo" id="f_tipoMilitar" value="m"/>Militar
+                </div>
+                <div class="radio">
+                    <input type="radio" name="f_tipo" id="f_tipoNormal" value="n" checked/>Normal
+                </div>
+            </div>
+            <div class="campoForm">
+                <button id="btn_addCarro">Adicionar</button>
+            </div>            
+        </div>
+        <div id="carros" class="carros">
+            <!-- <div class="carro">Golf</div> -->
+        </div>
+        <script src="aula64.js"></script>
+    </body>
+</html>
+
