@@ -1,0 +1,21 @@
+*{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.jogadores{
+    display: flex;
+    flex-direction: column;
+}
+.jogador{
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    margin: 5px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
