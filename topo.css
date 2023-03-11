@@ -1,0 +1,9 @@
+.topo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00f;
+}
+.logo img{
+    width: 200px;
+}

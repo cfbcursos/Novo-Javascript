@@ -1,0 +1,35 @@
+*{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+#divTimer{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+#timer{
+    background-color: #333;
+    color: #0f0;
+    display: flex;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    padding: 10px 20px;
+    justify-content: center;
+    width: inherit;
+    border-radius: 5px;
+    border:5px solid #888;
+}
+#botoes{
+    display: flex;
+    justify-content: space-around;
+}
+.btn{
+    cursor: pointer;
+    background-color: #ccc;
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}

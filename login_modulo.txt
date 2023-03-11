@@ -1,0 +1,33 @@
+class Login{
+    static logado=false;
+    static matlogado=null;
+    static nomelogado=null;
+    static acessologado=null;
+    static endpoint="https://loginv1.cfbcursos.repl.co/";
+    static login=(mat,pas)=>{
+        this.endpoint+=`?matricula=${mat}&senha=${pas}`;
+        fetch(this.endpoint)
+        .then(res=>res.json())
+        .then(res=>{
+            if(res){
+                this.logado=true;
+                console.log(res);
+                console.log(mat);
+                console.log(this.logado);
+                console.log(res.nome);
+                console.log(res.acesso);
+                this.matlogado=mat;
+                this.nomelogado=res.nome;
+                this.acessologado=res.acesso;
+            }
+        })
+    }
+    static logoff=()=>{
+        this.logado=false;
+        this.matlogado=null;
+        this.nomelogado=null;
+        this.acessologado=null;
+    }
+}
+export {Login};
+//https://loginv1.cfbcursos.repl.co/?matricula=123&senha=321
