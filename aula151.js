@@ -7,9 +7,14 @@ const callback_naook=()=>{
         cor:"#800",
         tipo:"ok",
         textos:null,
-        comando_sn:null,
+        comando_sn:()=>{},
     }
     Cxmsg.mostrar(config,"Erro","Login não efetuado! Usuário ou senha incorretos.");
 }
 
-Login.login(callback_ok,callback_naook);
+const configlogin={
+    cor:"048",
+    img:"logo.png",
+    endpoint:"https://loginv1.cfbcursos.repl.co"
+}
+Login.login(callback_ok,callback_naook,configlogin);
