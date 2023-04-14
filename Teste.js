@@ -1,25 +1,20 @@
-let nome="Bruno";
-let nomebase64=btoa(nome);
-console.log(nomebase64);
-console.log(atob(nomebase64));
+const id_numero=document.querySelector("#id_numero");
+const mensagem=document.querySelector("#mensagem");
+const btn_verificar=document.querySelector("#btn_verificar");
 
-const teste_file=document.querySelector("#teste_file");
-const btn=document.querySelector("#btn");
-const img=document.querySelector("#img");
+const numerocpu=Math.floor(Math.random()*300);
+let quantidade=0;
 
-btn.addEventListener("click",(evt)=>{
-    const obj=teste_file.files[0];
-    const reader=new FileReader();
-    reader.addEventListener("load",(evt)=>{
-        const res=reader.result;
-        img.src=res;
-        partes=res.split(",");
-        console.log(res);
-        console.log(partes[0]);
-        const resmontado="data:image/jpeg;base64,"+partes[1];
-        img.src=resmontado;
-    },false);
-    if(obj){
-        reader.readAsDataURL(obj);
+mensagem.innerHTML=`Número escolhido: Tentativas ${quantidade}`;
+
+btn_verificar.addEventListener("click",(evt)=>{
+    quantidade++;
+    if(id_numero.value > numerocpu){
+        mensagem.innerHTML=`Seu número é maior que o sorteado: Tentativas ${quantidade}`;
+    }else if(id_numero.value < numerocpu){
+        mensagem.innerHTML=`Seu número é menor que o sorteado: Tentativas ${quantidade}`;
+    }else{
+        mensagem.innerHTML=`Parabéns você acertou em ${quantidade} tentativas`;
     }
-})
+});
+

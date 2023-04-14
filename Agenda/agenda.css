@@ -1,0 +1,120 @@
+*{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.cabecalho{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #f00; */
+}
+.menu{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* border: 1px solid #f00; */
+}
+.principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    width: 100%;
+    height: 100vh;
+    /* border: 1px solid #f00; */
+}
+.aba{
+    background-color: #248;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px 10px 0px 0px;
+    margin-right:1px;
+}
+.abaSelecionada{
+    /* background-color: #248 !important; */
+    background-color: #ddd !important;
+}
+.if_principal{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    /* border: 1px solid #f00;     */
+}
+.btn_geral{
+    background-color: #248;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin:10px;
+}
+
+/* NOVO */
+#novo{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.elementosForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 80%;
+    margin-top: 20px;
+    /* border: 1px solid #f00; */
+}
+.botoesForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.campoForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    width: 100%;
+    /* border: 1px solid #f00; */
+}
+.campoForm input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+/********/
+
+/* PESQUISAR */
+.pesquisa{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 10px;
+}
+.campoPesq{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    /* border: 1px solid #f00; */
+}
+input[type=text]{
+    /* border: 1px solid #f00; */
+    padding: 5px;
+    border-radius: 5px;
+}
+label{
+    margin-right: 5px;
+}
+
+/*************/
+

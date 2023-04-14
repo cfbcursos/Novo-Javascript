@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="agenda.css">
+    </head>
+    <body>
+
+        <div id="pesquisa" class="pesquisa">
+            <div class="campoPesq">
+                <label>ID</label>
+                <input type="radio" name="f_pesq" value="id">
+            </div>
+            <div class="campoPesq">
+                <label>Nome</label>
+                <input type="radio" name="f_pesq" value="nome" checked>
+            </div>     
+            <div class="campoPesq">
+                <label>Data Nascimento</label>
+                <input type="radio" name="f_pesq" value="nasc">
+            </div>  
+            <div class="campoPesq">
+                <label>E-Mail</label>
+                <input type="radio" name="f_pesq" value="email">
+            </div>   
+            <div class="campoPesq">
+                <label>Pesquisar</label>
+                <input type="text" id="f_txtpesq" name="f_txtpesq">
+            </div> 
+            <div class="campoPesq">
+                <button id="btn_pesq" class="btn_geral">Pesquisar</button>
+            </div>                                                    
+        </div>
+
+        <div id="resultado">
+
+        </div>
+        <script src="pesquisar.js" type="module"></script>
+    </body>
+</html>
