@@ -2,6 +2,9 @@
     margin: 0px;
     padding: 0px;
 }
+body{
+    overflow: hidden;
+}
 .menuPrincipal{
     position: absolute;
     top: 0px;
@@ -22,7 +25,7 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background-color: #aaa;
+    background-color: #ccc;
     height: 100%;
 }
 .btn_menuItem{
@@ -36,13 +39,12 @@
     color: #000;
     background-color: #888;
     text-align: center;
+    color: #fff;
 }
 .btn_menuPrincipal{
     cursor: pointer;
     border: none;
-}
-.btn_menuPrincipal img{
-    width: 20px;
+    width: 30px;
 }
 .principal{
     display: flex;
@@ -56,4 +58,44 @@
     height: 100%;
     border: none;
 }
+
+/* FORMATAÇÃO DE GRIDS */
+
+.grid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.tituloGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #248;
+    color: #fff;
+}
+.colunaTituloGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dadosGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.linhaGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.colunaLinhaGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/***********************/
 
