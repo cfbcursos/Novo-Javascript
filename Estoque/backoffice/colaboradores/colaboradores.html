@@ -10,8 +10,55 @@
     </head>
     <body>
         <div id="topoJanela" class="topoJanela">
-            topo
+            <div></div>
+            <div>Colaboradores</div>
+            <div>
+                <img src="../../imgs/add.svg" id="btn_add" class="btn_mainoper">
+            </div>
         </div>
+
+        <div id="novoColaborador" class="popup ocultarPopup">
+            <div class="janelaPopup">
+                <div class="tituloPopup">
+                    <div>Novo Colaborador</div>
+                    <img src="../../imgs/fechar.svg" class="btn_janelaopera" id="btn_fecharPopup">
+                </div>
+                <div class="corpoPopup">
+                    <div class="campoForm">
+                        <label>Nome Colaborador</label>
+                        <input type="text" id="f_nome" name="f_nome">
+                    </div>
+                    <div class="campoForm">
+                        <label>Tipo Colaborador</label>
+                        <select id="f_tipoColab" name="f_tipoColab">
+                            <option>teste</option>
+                        </select>
+                    </div>    
+                    <div class="campoForm">
+                        <label>Status</label>
+                        <select id="f_status" name="f_status">
+                            <option value="A">Ativo</option>
+                            <option value="I">Inativo</option>
+                        </select>
+                    </div>  
+                    <div class="campoForm">
+                        <label>Telefones</label>
+                        <input type="text" id="f_fone" name="f_fone">
+                        <div id="telefones" class="telefones">
+                            <!-- <div class="tel">
+                                <div class="numTel">(31)88888888</div>
+                                <img src="../../imgs/delete.svg" class="delTel">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="rodapePopup">
+                    <button id="btn_gravarPopup" class="btn_comandoPopup">gravar</button>
+                    <button id="btn_cancelarPopup" class="btn_comandoPopup">cancelar</button>
+                </div>
+            </div>
+        </div>
+
         <div id="grid" class="grid">
             <div id="tituloGrid" class="tituloGrid">
                 <div class="colunaTituloGrid c1">ID</div>
