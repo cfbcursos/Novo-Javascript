@@ -86,9 +86,9 @@ body{
 }
 .dadosGrid{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
 }
 .linhaGrid{
     display: flex;
@@ -96,10 +96,24 @@ body{
     align-items: center;
     flex-direction: row;
 }
+.linhaGrid:nth-child(even){
+    background-color:#eee;
+}
+.linhaGrid:nth-child(odd){
+    background-color:#ccc;
+}
+.linhaGrid:hover{
+    background-color: #0ac !important;
+    color: #fff !important;
+}
 .colunaLinhaGrid{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.icone_op{
+    width: 25px;
+    cursor: pointer;
 }
 /***********************/
 
@@ -185,6 +199,17 @@ body{
     flex-direction: column;
     box-sizing: border-box;
     width: 100%;
+}
+.campoForm2{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
 }
 .campoForm input, .campoForm select{
     padding: 5px;

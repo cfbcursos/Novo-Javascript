@@ -14,5 +14,14 @@ body{
     width: 100px;
 }
 .c5{
-    width: 200px;
+    width: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.img_foto{
+    width: 75px;
+    height: 100px;
+    border: 1px solid #fff;
+    border-radius: 5px;
 }
