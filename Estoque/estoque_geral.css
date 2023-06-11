@@ -64,7 +64,14 @@ body{
 }
 
 /* FORMATAÇÃO DE GRIDS */
-
+.areaGrid{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+}
 .grid{
     display: flex;
     justify-content: center;
@@ -105,6 +112,9 @@ body{
 .linhaGrid:hover{
     background-color: #0ac !important;
     color: #fff !important;
+}
+.ocultarLinhaGrid{
+    display: none !important;
 }
 .colunaLinhaGrid{
     display: flex;
@@ -219,6 +229,23 @@ body{
     box-sizing: border-box;
     background-color: #fff;
     margin-bottom: 5px;
+}
+.campoFiltragem{
+    width: 300px;
+}
+.campoRadio{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+.inputFiltragem{
+    border: 3px solid #888 !important;
+}
+.filtragem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .ocultarPopup{
     display: none !important;

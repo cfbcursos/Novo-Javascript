@@ -13,14 +13,50 @@
             <div></div>
             <div>Colaboradores</div>
             <div>
+                <img src="../../imgs/lupa.svg" id="btn_pesq" class="btn_mainoper">
+                <img src="../../imgs/listarTudo.svg" id="btn_listarTudo" class="btn_mainoper">
                 <img src="../../imgs/add.svg" id="btn_add" class="btn_mainoper">
             </div>
         </div>
 
+        <div id="filtragem" class="filtragem">
+            <div class="campoForm campoFiltragem">
+                <label>Filtrar por nome</label>
+                <input type="text" id="f_filtragem" name="f_filtragem" class="inputFiltragem">
+            </div>
+        </div>
+
+        <div id="pesquisa" class="popup ocultarPopup"> 
+            <div class="janelaPopup">
+                <div class="tituloPopup">
+                    <div id="tituloPopupPesquisar">Pesquisar</div>
+                    <img src="../../imgs/fechar.svg" class="btn_janelaopera" id="btn_fecharPopupPesq">
+                </div>
+                <div class="corpoPopup">
+                    <div class="campoForm">
+                        <label>Tipo da pesquisa</label>
+                        <div class="campoRadio">
+                            <input type="radio" id="f_pesqId" name="f_pesqTipo" checked>ID
+                        </div>
+                        <div class="campoRadio">
+                            <input type="radio" id="f_pesqNome" name="f_pesqTipo">Nome
+                        </div>
+                    </div> 
+                    <div class="campoForm">
+                        <input type="text" id="f_pesq" name="f_pesq">
+                    </div>
+                </div>
+                <div class="rodapePopup">
+                    <button id="btn_pesquisar" class="btn_comandoPopup">pesquisar</button>
+                </div>
+            </div>
+        </div>
+
+
         <div id="novoColaborador" class="popup ocultarPopup">
             <div class="janelaPopup">
                 <div class="tituloPopup">
-                    <div>Novo Colaborador</div>
+                    <div id="tituloPopup">Novo Colaborador</div>
                     <img src="../../imgs/fechar.svg" class="btn_janelaopera" id="btn_fecharPopup">
                 </div>
                 <div class="corpoPopup">
@@ -67,24 +103,26 @@
             </div>
         </div>
 
-        <div id="grid" class="grid">
-            <div id="tituloGrid" class="tituloGrid">
-                <div class="colunaTituloGrid c1">ID</div>
-                <div class="colunaTituloGrid c2">Nome</div>
-                <div class="colunaTituloGrid c3">Tipo</div>
-                <div class="colunaTituloGrid c4">Status</div>
-                <div class="colunaTituloGrid c5">Operações</div>
-            </div>
-            <div id="dadosGrid" class="dadosGrid">
-                <!--
-                <div class="linhaGrid">
-                    <div class="colunaLinhaGrid c1">ID</div>
-                    <div class="colunaLinhaGrid c2">Nome</div>
-                    <div class="colunaLinhaGrid c3">Tipo</div>
-                    <div class="colunaLinhaGrid c4">Status</div>
-                    <div class="colunaLinhaGrid c5">Operações</div>                    
+        <div id="areaGrid" class="areaGrid">
+            <div id="grid" class="grid">
+                <div id="tituloGrid" class="tituloGrid">
+                    <div class="colunaTituloGrid c1">ID</div>
+                    <div class="colunaTituloGrid c2">Nome</div>
+                    <div class="colunaTituloGrid c3">Tipo</div>
+                    <div class="colunaTituloGrid c4">Status</div>
+                    <div class="colunaTituloGrid c5">Operações</div>
                 </div>
-                -->
+                <div id="dadosGrid" class="dadosGrid">
+                    <!--
+                    <div class="linhaGrid">
+                        <div class="colunaLinhaGrid c1">ID</div>
+                        <div class="colunaLinhaGrid c2">Nome</div>
+                        <div class="colunaLinhaGrid c3">Tipo</div>
+                        <div class="colunaLinhaGrid c4">Status</div>
+                        <div class="colunaLinhaGrid c5">Operações</div>                    
+                    </div>
+                    -->
+                </div>
             </div>
         </div>
 

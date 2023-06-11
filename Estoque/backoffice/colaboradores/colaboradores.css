@@ -1,5 +1,5 @@
 body{
-    overflow: auto !important;
+    overflow: hidden !important;
 }
 .c1{
     width: 100px;
@@ -18,7 +18,9 @@ body{
     display: flex;
     justify-content: space-around;
 }
-
+.ocultarLinhaGrid{
+    display: none !important;
+}
 .img_foto{
     width: 75px;
     height: 100px;
