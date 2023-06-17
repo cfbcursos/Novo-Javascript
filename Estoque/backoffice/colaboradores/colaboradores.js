@@ -1,3 +1,5 @@
+import {Cxmsg} from "../../utils/cxmsg.js";
+
 const dadosGrid=document.querySelector("#dadosGrid");
 const btn_add=document.querySelector("#btn_add");
 const novoColaborador=document.querySelector("#novoColaborador");
@@ -73,7 +75,16 @@ btn_pesquisar.addEventListener("click",(evt)=>{
         })
         pesquisa.classList.add("ocultarPopup");
     }else{
-        alert("Preecha o campo de pesquisa");
+        const config={
+            titulo:"Alerta",
+            texto:"Digite o nome ou ID do colaborador",
+            cor:"#008",
+            tipo:"ok",
+            ok:()=>{},
+            sim:()=>{},
+            nao:()=>{}
+        }
+        Cxmsg.mostrar(config);
         f_pesq.focus();
     }
 });
@@ -288,7 +299,16 @@ btn_gravarPopup.addEventListener("click",(evt)=>{
     .then(res=>{
         if(res.status==200){
             if(modojanela=="n"){
-                alert("Novo colaborador gravado");
+                const config={
+                    titulo:"OK",
+                    texto:"Novo colaborador gravado",
+                    cor:"#008",
+                    tipo:"ok",
+                    ok:()=>{},
+                    sim:()=>{},
+                    nao:()=>{}
+                }
+                Cxmsg.mostrar(config);                
                 f_nome.value="";
                 f_tipoColab.value="";
                 f_status.value="";
@@ -297,10 +317,28 @@ btn_gravarPopup.addEventListener("click",(evt)=>{
                 telefones.innerHTML="";
                 carregarTodosColabs();
             }else{
-                alert("Colaborador editaco com sucesso");
+                const config={
+                    titulo:"OK",
+                    texto:"Colaborador editado com sucesso",
+                    cor:"#008",
+                    tipo:"ok",
+                    ok:()=>{},
+                    sim:()=>{},
+                    nao:()=>{}
+                }
+                Cxmsg.mostrar(config); 
             }
         }else{
-            alert("Erro ao gravar novo colaborador");
+            const config={
+                titulo:"ERRO",
+                texto:"Erro ao gravar novo colaborador",
+                cor:"#80",
+                tipo:"ok",
+                ok:()=>{},
+                sim:()=>{},
+                nao:()=>{}
+            }
+            Cxmsg.mostrar(config);             
         }
     })
 });
@@ -314,7 +352,16 @@ f_fone.addEventListener("keyup",(evt)=>{
             criarCxTelefone(evt.target.value,"-1","n");
             evt.target.value="";
         }else{
-            alert("Número de Telefone inválido");
+            const config={
+                titulo:"ERRO",
+                texto:"Número de Telefone inválido",
+                cor:"#80",
+                tipo:"ok",
+                ok:()=>{},
+                sim:()=>{},
+                nao:()=>{}
+            }
+            Cxmsg.mostrar(config);              
         }
     }
 });
