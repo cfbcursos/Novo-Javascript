@@ -2,13 +2,12 @@ import {Cxmsg} from "../../utils/cxmsg.js";
 
 const dadosGrid=document.querySelector("#dadosGrid");
 const btn_add=document.querySelector("#btn_add");
-const novoColaborador=document.querySelector("#novoColaborador");
+const novoFornecedor=document.querySelector("#novoFornecedor");
 const btn_fecharPopup=document.querySelector("#btn_fecharPopup");
 const btn_fecharPopupPesq=document.querySelector("#btn_fecharPopupPesq");
 const btn_gravarPopup=document.querySelector("#btn_gravarPopup");
 const btn_cancelarPopup=document.querySelector("#btn_cancelarPopup");
 const telefones=document.querySelector("#telefones");
-const f_fone=document.querySelector("#f_fone");
 const f_nome=document.querySelector("#f_nome");
 const f_tipoColab=document.querySelector("#f_tipoColab");
 const f_status=document.querySelector("#f_status");
@@ -22,7 +21,7 @@ const f_pesqNome=document.querySelector("#f_pesqNome");
 const btn_pesquisar=document.querySelector("#btn_pesquisar");
 const btn_listarTudo=document.querySelector("#btn_listarTudo");
 
-//n=Novo Colaborador | e=Editar colaborador
+//n=Novo Fornecedor | e=Editar Fornecedor
 let modojanela="n";
 const serv=sessionStorage.getItem("servidor_nodered");
 
@@ -77,7 +76,7 @@ btn_pesquisar.addEventListener("click",(evt)=>{
     }else{
         const config={
             titulo:"Alerta",
-            texto:"Digite o nome ou ID do colaborador",
+            texto:"Digite o nome ou ID do Fornecedor",
             cor:"#008",
             tipo:"ok",
             ok:()=>{},
@@ -90,50 +89,12 @@ btn_pesquisar.addEventListener("click",(evt)=>{
 });
 
 btn_listarTudo.addEventListener("click",(evt)=>{
-    carregarTodosColabs();
+    carregarTodosFornecedores();
 });
 
-const criarCxTelefone=(fone,idtel,tipo)=>{
-    const divTel=document.createElement("div");
-    divTel.setAttribute("class","tel");
-
-    const numTel=document.createElement("div");
-    if(tipo=="n"){
-        numTel.setAttribute("class","numTel novoTel");
-    }else{
-        numTel.setAttribute("class","numTel editarTel");
-    }
-
-    numTel.innerHTML=fone;
-    divTel.appendChild(numTel);
-
-    const delTel=document.createElement("img");
-    delTel.setAttribute("src","../../imgs/delete.svg");
-    delTel.setAttribute("class","delTel");
-    delTel.setAttribute("data-idtel",idtel);
-    delTel.addEventListener("click",(evt)=>{
-        if(idtel!="-1"){
-            const objTel=evt.target;
-            const idtel=objTel.dataset.idtel;
-            const endpoint_delTelefone=`${serv}/deltelefone/${idtel}`;
-            fetch(endpoint_delTelefone)
-            .then(res=>{
-                if(res.status==200){
-                    evt.target.parentNode.remove();
-                }
-            })
-        }else{
-            evt.target.parentNode.remove();
-        }
-    });
-    divTel.appendChild(delTel);
-    
-    telefones.appendChild(divTel);
-}
-
-const carregarTodosColabs=()=>{
-    const endpoint_todoscolaboradores=`${serv}/todaspessoas`;
-    fetch(endpoint_todoscolaboradores)
+const carregarTodosFornecedores=()=>{
+    const endpoint=`${serv}/todosfornecedores`;
+    fetch(endpoint)
     .then(res=>res.json())
     .then(res=>{
         dadosGrid.innerHTML="";
@@ -142,7 +103,7 @@ const carregarTodosColabs=()=>{
         });
     });
 }
-carregarTodosColabs();
+carregarTodosFornecedores();
 
 const criarLinha=(e)=>{
     const divlinha=document.createElement("div");
@@ -150,59 +111,54 @@ const criarLinha=(e)=>{
 
     const divc1=document.createElement("div");
     divc1.setAttribute("class","colunaLinhaGrid c1");
-    divc1.innerHTML=e.n_pessoa_pessoa;
+    divc1.innerHTML=e.n_fornecedor_fornecedor ;
     divlinha.appendChild(divc1);
 
     const divc2=document.createElement("div");
     divc2.setAttribute("class","colunaLinhaGrid c2");
-    divc2.innerHTML=e.s_nome_pessoa;
+    divc2.innerHTML=e.s_desc_fornecedor;
     divlinha.appendChild(divc2);
-    
+       
     const divc3=document.createElement("div");
     divc3.setAttribute("class","colunaLinhaGrid c3");
-    divc3.innerHTML=e.n_tipopessoa_tipopessoa;
-    divlinha.appendChild(divc3);
+    divc3.innerHTML=e.c_status_fornecedor;
+    divlinha.appendChild(divc3);    
     
     const divc4=document.createElement("div");
     divc4.setAttribute("class","colunaLinhaGrid c4");
-    divc4.innerHTML=e.c_status_pessoa;
-    divlinha.appendChild(divc4);    
-    
-    const divc5=document.createElement("div");
-    divc5.setAttribute("class","colunaLinhaGrid c5");
-    divlinha.appendChild(divc5);
+    divlinha.appendChild(divc4);
     
     const img_status=document.createElement("img");
-    if(e.c_status_pessoa=="A"){
+    if(e.c_status_fornecedor=="A"){
         img_status.setAttribute("src","../../imgs/on.svg");
     }else{
         img_status.setAttribute("src","../../imgs/off.svg");
     }
-    img_status.setAttribute("data-idcolab",e.n_pessoa_pessoa);
+    img_status.setAttribute("data-idfornecedor",e.n_fornecedor_fornecedor);
     img_status.setAttribute("class","icone_op");
     img_status.addEventListener("click",(evt)=>{
-        const idcolab=evt.target.dataset.idcolab;
+        const idfornecedor=evt.target.dataset.idfornecedor;
         if(evt.target.getAttribute("src")=="../../imgs/on.svg"){
-            const endpoint_mudarStatus=`${serv}/mudarStatusColab/${idcolab}/I`;
+            const endpoint_mudarStatus=`${serv}/mudarStatusFornecedor/${idfornecedor}/I`;
             fetch(endpoint_mudarStatus)
             .then(res=>{
                 if(res.status==200){
                     evt.target.setAttribute("src","../../imgs/off.svg");
-                    evt.target.parentNode.parentNode.childNodes[3].innerHTML="I";
+                    evt.target.parentNode.parentNode.childNodes[2].innerHTML="I";
                 }
             })
         }else{
-            const endpoint_mudarStatus=`${serv}/mudarStatusColab/${idcolab}/A`;
+            const endpoint_mudarStatus=`${serv}/mudarStatusFornecedor/${idfornecedor}/A`;
             fetch(endpoint_mudarStatus)
             .then(res=>{
                 if(res.status==200){
                     evt.target.setAttribute("src","../../imgs/on.svg");
-                    evt.target.parentNode.parentNode.childNodes[3].innerHTML="A";
+                    evt.target.parentNode.parentNode.childNodes[2].innerHTML="A";
                 }
             })
         }
     })
-    divc5.appendChild(img_status);
+    divc4.appendChild(img_status);
 
     const img_editar=document.createElement("img");
     img_editar.setAttribute("src","../../imgs/editar.svg");
@@ -210,104 +166,70 @@ const criarLinha=(e)=>{
     img_editar.addEventListener("click",(evt)=>{
         const id=evt.target.parentNode.parentNode.firstChild.innerHTML;
         modojanela="e";
-        document.getElementById("tituloPopup").innerHTML="Editar Colaborador";
-        let endpoint=`${serv}/dadoscolab/${id}`;
+        document.getElementById("tituloPopup").innerHTML="Editar Fornecedor";
+        let endpoint=`${serv}/dadosforn/${id}`;
         fetch(endpoint)
         .then(res=>res.json())
         .then(res=>{
-            btn_gravarPopup.setAttribute("data-idcolab",id);
-            f_nome.value=res[0].s_nome_pessoa;
-            f_tipoColab.value=res[0].n_tipopessoa_tipopessoa;
-            f_status.value=res[0].c_status_pessoa;
-            img_foto.src=res[0].s_foto_pessoa;
-            novoColaborador.classList.remove("ocultarPopup");
-            if(img_foto.src=="" || img_foto.src=="#"){
+            btn_gravarPopup.setAttribute("data-idfornecedor",id);
+            f_nome.value=res[0].s_desc_fornecedor;
+            f_status.value=res[0].c_status_fornecedor;
+            img_foto.src=res[0].s_logo_fornecedor;
+            novoFornecedor.classList.remove("ocultarPopup");
+            if(res[0].s_logo_fornecedor==""){
                 img_foto.classList.add("esconderElemento");
             }else{
                 img_foto.classList.remove("esconderElemento");
             }
         })
-
-        endpoint=`${serv}/telefonescolab/${id}`;
-        fetch(endpoint)
-        .then(res=>res.json())
-        .then(res=>{
-            telefones.innerHTML="";
-            res.forEach(t=>{
-                criarCxTelefone(t.s_numero_telefone,t.n_telefone_telefone,"e");
-            })
-        })
     });
-    divc5.appendChild(img_editar);
+    divc4.appendChild(img_editar);
     
     const img_remover=document.createElement("img");
     img_remover.setAttribute("src","../../imgs/delete.svg");
     img_remover.setAttribute("class","icone_op");
-    divc5.appendChild(img_remover); 
+    divc4.appendChild(img_remover); 
 
     dadosGrid.appendChild(divlinha);
 }
 
-const endpoint_tiposColab=`${serv}/tiposcolab`;
-fetch(endpoint_tiposColab)
-.then(res=>res.json())
-.then(res=>{
-    f_tipoColab.innerHTML="";
-    res.forEach(e=>{
-        const opt=document.createElement("option");
-        opt.setAttribute("value",e.n_tipopessoa_tipopessoa);
-        opt.innerHTML=e.s_desc_tipopessoa;
-        f_tipoColab.appendChild(opt);
-    });
-})
-
 btn_add.addEventListener("click",(evt)=>{
     modojanela="n";
-    document.getElementById("tituloPopup").innerHTML="Novo Colaborador";
-    novoColaborador.classList.remove("ocultarPopup");
+    document.getElementById("tituloPopup").innerHTML="Novo Fornecedor";
+    novoFornecedor.classList.remove("ocultarPopup");
     img_foto.classList.add("esconderElemento");
     f_nome.value="";
-    f_tipoColab.value="";
     f_status.value="";
     f_foto.value="";
     img_foto.setAttribute("src","#");
-    telefones.innerHTML="";
 });
 btn_fecharPopup.addEventListener("click",(evt)=>{
-    novoColaborador.classList.add("ocultarPopup");
+    novoFornecedor.classList.add("ocultarPopup");
 });
 btn_gravarPopup.addEventListener("click",(evt)=>{
-    const tels=[...document.querySelectorAll(".novoTel")];
-    console.log(tels);
-    let numTels=[];
-    tels.forEach(t=>{
-        numTels.push(t.innerHTML);
-    });
     const dados={
-        n_pessoa_pessoa:evt.target.dataset.idcolab,
-        s_nome_pessoa:f_nome.value,
-        n_tipopessoa_tipopessoa:f_tipoColab.value,
-        c_status_pessoa:f_status.value,
-        numtelefones:numTels,
-        s_foto_pessoa:img_foto.getAttribute("src")
+        n_fornecedor_fornecedor:evt.target.dataset.idfornecedor,
+        s_desc_fornecedor:f_nome.value,
+        c_status_fornecedor:f_status.value,
+        s_logo_fornecedor:img_foto.getAttribute("src")
     }
     const cab={
         method:'post',
         body:JSON.stringify(dados)
     }
-    let endpointnovoeditarcolab=null;
+    let endpoint=null;
     if(modojanela=="n"){
-        endpointnovoeditarcolab=`${serv}/novocolab`
+        endpoint=`${serv}/novoforn`
     }else{
-        endpointnovoeditarcolab=`${serv}/editarcolab`
+        endpoint=`${serv}/editarforn`
     }
-    fetch(endpointnovoeditarcolab,cab)
+    fetch(endpoint,cab)
     .then(res=>{
         if(res.status==200){
             if(modojanela=="n"){
                 const config={
                     titulo:"OK",
-                    texto:"Novo colaborador gravado",
+                    texto:"Novo Fornecedor gravado",
                     cor:"#008",
                     tipo:"ok",
                     ok:()=>{},
@@ -316,16 +238,14 @@ btn_gravarPopup.addEventListener("click",(evt)=>{
                 }
                 Cxmsg.mostrar(config);                
                 f_nome.value="";
-                f_tipoColab.value="";
                 f_status.value="";
                 f_foto.value="";
                 img_foto.setAttribute("src","#");
-                telefones.innerHTML="";
-                carregarTodosColabs();
+                // carregarTodosFornecedores();
             }else{
                 const config={
                     titulo:"OK",
-                    texto:"Colaborador editado com sucesso",
+                    texto:"Fornecedor editado com sucesso",
                     cor:"#008",
                     tipo:"ok",
                     ok:()=>{},
@@ -337,7 +257,7 @@ btn_gravarPopup.addEventListener("click",(evt)=>{
         }else{
             const config={
                 titulo:"ERRO",
-                texto:"Erro ao gravar novo colaborador",
+                texto:"Erro ao gravar novo Fornecedor",
                 cor:"#80",
                 tipo:"ok",
                 ok:()=>{},
@@ -348,30 +268,11 @@ btn_gravarPopup.addEventListener("click",(evt)=>{
         }
     }).finally(()=>{
         img_foto.classList.add("esconderElemento");
+        carregarTodosFornecedores();
     })
 });
 btn_cancelarPopup.addEventListener("click",(evt)=>{
-    novoColaborador.classList.add("ocultarPopup");
-});
-
-f_fone.addEventListener("keyup",(evt)=>{
-    if(evt.key=="Enter"){
-        if(evt.target.value.length >= 8){
-            criarCxTelefone(evt.target.value,"-1","n");
-            evt.target.value="";
-        }else{
-            const config={
-                titulo:"ERRO",
-                texto:"Número de Telefone inválido",
-                cor:"#80",
-                tipo:"ok",
-                ok:()=>{},
-                sim:()=>{},
-                nao:()=>{}
-            }
-            Cxmsg.mostrar(config);              
-        }
-    }
+    novoFornecedor.classList.add("ocultarPopup");
 });
 
 const converte_imagem_b64=(localDestino,arquivoimg)=>{

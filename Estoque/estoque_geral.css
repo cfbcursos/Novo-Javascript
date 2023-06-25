@@ -20,6 +20,9 @@ body{
     width: 240px;
     height: 100vh;
 }
+.esconderElemento{
+    display: none !important;
+}
 .ocultar{
     left: -190px !important;
     transition: all .2s;
