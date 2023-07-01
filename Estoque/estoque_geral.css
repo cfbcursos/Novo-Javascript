@@ -105,6 +105,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    width: 100%;
 }
 .linhaGrid:nth-child(even){
     background-color:#eee;

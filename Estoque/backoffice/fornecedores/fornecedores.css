@@ -15,6 +15,17 @@ body{
     display: flex;
     justify-content: space-around;
 }
+.c1_lcf{
+    width: 50px;
+}
+.c2_lcf{
+    width: 400px;
+}
+.c3_lcf{
+    width: 100px;
+    display: flex;
+    justify-content: space-around;
+}
 .ocultarLinhaGrid{
     display: none !important;
 }

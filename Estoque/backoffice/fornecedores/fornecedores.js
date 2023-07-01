@@ -5,6 +5,7 @@ const btn_add=document.querySelector("#btn_add");
 const novoFornecedor=document.querySelector("#novoFornecedor");
 const btn_fecharPopup=document.querySelector("#btn_fecharPopup");
 const btn_fecharPopupPesq=document.querySelector("#btn_fecharPopupPesq");
+const btn_fecharPopupListaContatos=document.querySelector("#btn_fecharPopupListaContatos");
 const btn_gravarPopup=document.querySelector("#btn_gravarPopup");
 const btn_cancelarPopup=document.querySelector("#btn_cancelarPopup");
 const telefones=document.querySelector("#telefones");
@@ -20,6 +21,10 @@ const f_pesqId=document.querySelector("#f_pesqId");
 const f_pesqNome=document.querySelector("#f_pesqNome");
 const btn_pesquisar=document.querySelector("#btn_pesquisar");
 const btn_listarTudo=document.querySelector("#btn_listarTudo");
+const listaContatosForn=document.querySelector("#listaContatosForn");
+const btn_listarContatosForn=document.querySelector("#btn_listarContatosForn");
+const dadosGrid_novosContatosForn=document.querySelector("#dadosGrid_novosContatosForn");
+const dadosGrid_contatosFornAdd=document.querySelector("#dadosGrid_contatosFornAdd");
 
 //n=Novo Fornecedor | e=Editar Fornecedor
 let modojanela="n";
@@ -42,6 +47,9 @@ f_filtragem.addEventListener("keyup",(evt)=>{
 btn_fecharPopupPesq.addEventListener("click",(evt)=>{
     pesquisa.classList.add("ocultarPopup");
 });
+btn_fecharPopupListaContatos.addEventListener("click",(evt)=>{
+    listaContatosForn.classList.add("ocultarPopup");
+});
 btn_pesq.addEventListener("click",(evt)=>{
     pesquisa.classList.remove("ocultarPopup");
     f_pesq.value="";
@@ -63,7 +71,7 @@ btn_pesquisar.addEventListener("click",(evt)=>{
         tipo="nome";
     }
     if(f_pesq.value!=""){
-        const endpointpesq=`${serv}/pesquisacolab/${tipo}/${f_pesq.value}`;
+        const endpointpesq=`${serv}/pesquisaforn/${tipo}/${f_pesq.value}`;
         fetch(endpointpesq)
         .then(res=>res.json())
         .then(res=>{
@@ -193,6 +201,62 @@ const criarLinha=(e)=>{
     dadosGrid.appendChild(divlinha);
 }
 
+const criarLinhaContForn=(e)=>{
+    const divlinha=document.createElement("div");
+    divlinha.setAttribute("class","linhaGrid");
+
+    const divc1=document.createElement("div");
+    divc1.setAttribute("class","colunaLinhaGrid c1_lcf");
+    divc1.innerHTML=e.n_pessoa_pessoa ;
+    divlinha.appendChild(divc1);
+
+    const divc2=document.createElement("div");
+    divc2.setAttribute("class","colunaLinhaGrid c2_lcf");
+    divc2.innerHTML=e.s_nome_pessoa;
+    divlinha.appendChild(divc2);
+          
+    const divc3=document.createElement("div");
+    divc3.setAttribute("class","colunaLinhaGrid c3_lcf");
+    divlinha.appendChild(divc3);
+    
+    const img_addContForn=document.createElement("img");
+    img_addContForn.setAttribute("src","../../imgs/addContForn.svg");
+    img_addContForn.setAttribute("class","icone_op");
+    img_addContForn.addEventListener("click",(evt)=>{
+        const linha=evt.target.parentNode.parentNode;
+        dadosGrid_contatosFornAdd.appendChild(linha);
+    });
+    divc3.appendChild(img_addContForn);
+    
+    const img_verFoneContForn=document.createElement("img");
+    img_verFoneContForn.setAttribute("src","../../imgs/verTelefone.svg");
+    img_verFoneContForn.setAttribute("class","icone_op");
+    img_verFoneContForn.addEventListener("click",(evt)=>{
+        const id=evt.target.parentNode.parentNode.firstChild.innerHTML;
+        modojanela="e";
+        document.getElementById("tituloPopup").innerHTML="Editar Fornecedor";
+        let endpoint=`${serv}/dadosforn/${id}`;
+        fetch(endpoint)
+        .then(res=>res.json())
+        .then(res=>{
+            btn_gravarPopup.setAttribute("data-idfornecedor",id);
+            f_nome.value=res[0].s_desc_fornecedor;
+            f_status.value=res[0].c_status_fornecedor;
+            img_foto.src=res[0].s_logo_fornecedor;
+            novoFornecedor.classList.remove("ocultarPopup");
+            if(res[0].s_logo_fornecedor==""){
+                img_foto.classList.add("esconderElemento");
+            }else{
+                img_foto.classList.remove("esconderElemento");
+            }
+        })
+    });
+    divc3.appendChild(img_verFoneContForn);
+    
+    dadosGrid_novosContatosForn.appendChild(divlinha);
+}
+
+
 btn_add.addEventListener("click",(evt)=>{
     modojanela="n";
     document.getElementById("tituloPopup").innerHTML="Novo Fornecedor";
@@ -297,4 +361,20 @@ f_foto.addEventListener("change",(evt)=>{
         img_foto.setAttribute("src","#");
         img_foto.classList.add("esconderElemento");
     }
+});
+
+btn_listarContatosForn.addEventListener("click",(evt)=>{
+    listaContatosForn.classList.remove("ocultarPopup");
+    const mzi=maiorZIndex()+1
+    listaContatosForn.setAttribute("style",`z-index:${mzi} !important`);
+    dadosGrid_novosContatosForn.innerHTML="";
+    let endpoint=`${serv}/todasPessoasForn`;
+    fetch(endpoint)
+    .then(res=>res.json())
+    .then(res=>{
+        console.log(res);
+        res.forEach(e=>{
+            criarLinhaContForn(e);
+        });        
+    })
 });

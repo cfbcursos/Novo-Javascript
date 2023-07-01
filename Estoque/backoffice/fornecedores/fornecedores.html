@@ -7,8 +7,41 @@
         <title>Fornecedores - BackOffice</title>
         <link rel="stylesheet" type="text/css" href="../../estoque_geral.css">
         <link rel="stylesheet" type="text/css" href="fornecedores.css">
+        <script src="../../utils/utils.js"></script>
     </head>
     <body>
+        <div id="listaContatosForn" class="popup ocultarPopup">
+            <div class="janelaPopup">
+                <div class="tituloPopup">
+                    <div id="tituloPopupPesquisar">Lista de Contatos</div>
+                    <img src="../../imgs/fechar.svg" class="btn_janelaopera" id="btn_fecharPopupListaContatos">
+                </div>
+                <div class="corpoPopup">
+                    <div id="grid_novosContatosForn" class="areaGrid">
+                        <div class="grid">
+                            <div class="tituloGrid">
+                                <div class="colunaTituloGrid c1_lcf">ID</div>
+                                <div class="colunaTituloGrid c2_lcf">Nome</div>
+                                <div class="colunaTituloGrid c3_lcf">Operações</div>
+                            </div>
+                            <div id="dadosGrid_novosContatosForn" class="dadosGrid">
+                                <!--
+                                <div class="linhaGrid">
+                                    <div class="colunaLinhaGrid c1_lcf">ID</div>
+                                    <div class="colunaLinhaGrid c2_lcf">Nome</div>
+                                    <div class="colunaLinhaGrid c3_lcf">Operações</div>                    
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rodapePopup">
+                    <button id="btn_criarNovoContatoForn" class="btn_comandoPopup">Criar Novo Contato</button>
+                </div>
+            </div>
+        </div>
+
         <div id="topoJanela" class="topoJanela">
             <div></div>
             <div>Fornecedores</div>
@@ -77,6 +110,29 @@
                     <div class="campoForm2">
                         <img src="#" id="img_foto" class="img_foto esconderElemento">
                     </div> 
+                    <div class="campoForm">
+                        <button id="btn_listarContatosForn" class="btn_comandoPopup">listar contatos fornecedores</button>
+                    </div> 
+                    <div class="campoForm">
+                        <div id="grid_listContatosFornAdd" class="areaGrid">
+                            <div class="grid">
+                                <div class="tituloGrid">
+                                    <div class="colunaTituloGrid c1_lcf">ID</div>
+                                    <div class="colunaTituloGrid c2_lcf">Nome</div>
+                                    <div class="colunaTituloGrid c3_lcf">Operações</div>
+                                </div>
+                                <div id="dadosGrid_contatosFornAdd" class="dadosGrid">
+                                    <!--
+                                    <div class="linhaGrid">
+                                        <div class="colunaLinhaGrid c1_lcf">ID</div>
+                                        <div class="colunaLinhaGrid c2_lcf">Nome</div>
+                                        <div class="colunaLinhaGrid c3_lcf">Operações</div>                    
+                                    </div>
+                                    -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>                     
                 </div>
                 <div class="rodapePopup">
                     <button id="btn_gravarPopup" class="btn_comandoPopup">gravar</button>
