@@ -26,6 +26,10 @@ const btn_listarContatosForn=document.querySelector("#btn_listarContatosForn");
 const dadosGrid_novosContatosForn=document.querySelector("#dadosGrid_novosContatosForn");
 const dadosGrid_contatosFornAdd=document.querySelector("#dadosGrid_contatosFornAdd");
 
+const telefonesContForn=document.querySelector("#telefonesContForn");
+const btn_fecharPopupTelefonesContForn=document.querySelector("#btn_fecharPopupTelefonesContForn");
+const dadosGrid_telefonesContForn=document.querySelector("#dadosGrid_telefonesContForn");
+
 //n=Novo Fornecedor | e=Editar Fornecedor
 let modojanela="n";
 const serv=sessionStorage.getItem("servidor_nodered");
@@ -201,6 +205,67 @@ const criarLinha=(e)=>{
     dadosGrid.appendChild(divlinha);
 }
 
+const addContForn=(id,nome)=>{
+    const divlinha=document.createElement("div");
+    divlinha.setAttribute("class","linhaGrid novoContForn");
+
+    const divc1=document.createElement("div");
+    divc1.setAttribute("class","colunaLinhaGrid c1_lcf");
+    divc1.innerHTML=id;
+    divlinha.appendChild(divc1);
+
+    const divc2=document.createElement("div");
+    divc2.setAttribute("class","colunaLinhaGrid c2_lcf");
+    divc2.innerHTML=nome;
+    divlinha.appendChild(divc2);
+    
+    const divc3=document.createElement("div");
+    divc3.setAttribute("class","colunaLinhaGrid c3_lcf");
+    divlinha.appendChild(divc3);
+    
+    const img_removerContForn=document.createElement("img");
+    img_removerContForn.setAttribute("src","../../imgs/delete.svg");
+    img_removerContForn.setAttribute("class","icone_op");
+    img_removerContForn.addEventListener("click",(evt)=>{
+        evt.target.parentNode.parentNode.remove();
+    });
+    divc3.appendChild(img_removerContForn);    
+
+    const img_verFoneContForn=document.createElement("img");
+    img_verFoneContForn.setAttribute("src","../../imgs/verTelefone.svg");
+    img_verFoneContForn.setAttribute("class","icone_op");
+    img_verFoneContForn.addEventListener("click",(evt)=>{
+        const id=evt.target.parentNode.parentNode.firstChild.innerHTML;
+        const endpoint=`${serv}/retornaTelefones/${id}`;
+        fetch(endpoint)
+        .then(res=>res.json())
+        .then(res=>{
+            dadosGrid_telefonesContForn.innerHTML="";
+            const mzi=maiorZIndex()+2;
+            telefonesContForn.setAttribute("style",`z-index:${mzi} !important`);            
+            telefonesContForn.classList.remove("ocultarPopup");       
+            res.forEach(e=>{
+                addTelefoneContForn(e.s_numero_telefone);
+            });     
+        })
+    });
+    divc3.appendChild(img_verFoneContForn);
+    
+    dadosGrid_contatosFornAdd.appendChild(divlinha);
+}
+
+const addTelefoneContForn=(telefone)=>{
+    const divlinha=document.createElement("div");
+    divlinha.setAttribute("class","linhaGrid");
+
+    const divc1=document.createElement("div");
+    divc1.setAttribute("class","colunaLinhaGrid c2_lcf");
+    divc1.innerHTML=telefone;
+    divlinha.appendChild(divc1);
+
+    dadosGrid_telefonesContForn.appendChild(divlinha);
+}
+
 const criarLinhaContForn=(e)=>{
     const divlinha=document.createElement("div");
     divlinha.setAttribute("class","linhaGrid");
@@ -224,7 +289,9 @@ const criarLinhaContForn=(e)=>{
     img_addContForn.setAttribute("class","icone_op");
     img_addContForn.addEventListener("click",(evt)=>{
         const linha=evt.target.parentNode.parentNode;
-        dadosGrid_contatosFornAdd.appendChild(linha);
+        const id=linha.childNodes[0].innerHTML;
+        const nome=linha.childNodes[1].innerHTML;
+        addContForn(id,nome);
     });
     divc3.appendChild(img_addContForn);
     
@@ -233,22 +300,17 @@ const criarLinhaContForn=(e)=>{
     img_verFoneContForn.setAttribute("class","icone_op");
     img_verFoneContForn.addEventListener("click",(evt)=>{
         const id=evt.target.parentNode.parentNode.firstChild.innerHTML;
-        modojanela="e";
-        document.getElementById("tituloPopup").innerHTML="Editar Fornecedor";
-        let endpoint=`${serv}/dadosforn/${id}`;
+        const endpoint=`${serv}/retornaTelefones/${id}`;
         fetch(endpoint)
         .then(res=>res.json())
         .then(res=>{
-            btn_gravarPopup.setAttribute("data-idfornecedor",id);
-            f_nome.value=res[0].s_desc_fornecedor;
-            f_status.value=res[0].c_status_fornecedor;
-            img_foto.src=res[0].s_logo_fornecedor;
-            novoFornecedor.classList.remove("ocultarPopup");
-            if(res[0].s_logo_fornecedor==""){
-                img_foto.classList.add("esconderElemento");
-            }else{
-                img_foto.classList.remove("esconderElemento");
-            }
+            dadosGrid_telefonesContForn.innerHTML="";
+            const mzi=maiorZIndex()+2;
+            telefonesContForn.setAttribute("style",`z-index:${mzi} !important`);            
+            telefonesContForn.classList.remove("ocultarPopup");       
+            res.forEach(e=>{
+                addTelefoneContForn(e.s_numero_telefone);
+            });     
         })
     });
     divc3.appendChild(img_verFoneContForn);
@@ -256,6 +318,9 @@ const criarLinhaContForn=(e)=>{
     dadosGrid_novosContatosForn.appendChild(divlinha);
 }
 
+btn_fecharPopupTelefonesContForn.addEventListener("click",(evt)=>{
+    telefonesContForn.classList.add("ocultarPopup");
+});
 
 btn_add.addEventListener("click",(evt)=>{
     modojanela="n";
@@ -271,10 +336,17 @@ btn_fecharPopup.addEventListener("click",(evt)=>{
     novoFornecedor.classList.add("ocultarPopup");
 });
 btn_gravarPopup.addEventListener("click",(evt)=>{
+    const contat=[...document.querySelectorAll(".novoContForn")];
+    let a_contat=[];
+    contat.forEach(t=>{
+        a_contat.push(t.firstChild.innerHTML);
+    });    
+
     const dados={
         n_fornecedor_fornecedor:evt.target.dataset.idfornecedor,
         s_desc_fornecedor:f_nome.value,
         c_status_fornecedor:f_status.value,
+        listaContatos:a_contat,
         s_logo_fornecedor:img_foto.getAttribute("src")
     }
     const cab={
