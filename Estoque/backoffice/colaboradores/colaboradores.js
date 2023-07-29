@@ -10,6 +10,7 @@ const btn_cancelarPopup=document.querySelector("#btn_cancelarPopup");
 const telefones=document.querySelector("#telefones");
 const f_fone=document.querySelector("#f_fone");
 const f_nome=document.querySelector("#f_nome");
+const f_email=document.querySelector("#f_email");
 const f_tipoColab=document.querySelector("#f_tipoColab");
 const f_status=document.querySelector("#f_status");
 const f_foto=document.querySelector("#f_foto");
@@ -286,6 +287,9 @@ btn_gravarPopup.addEventListener("click",(evt)=>{
     const dados={
         n_pessoa_pessoa:evt.target.dataset.idcolab,
         s_nome_pessoa:f_nome.value,
+        s_email_pessoa:f_email.value,
+        s_senha_pessoa:"",
+        n_primacess_pessoa:1,
         n_tipopessoa_tipopessoa:f_tipoColab.value,
         c_status_pessoa:f_status.value,
         numtelefones:numTels,
