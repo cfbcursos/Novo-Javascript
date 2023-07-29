@@ -3,6 +3,9 @@ CREATE TABLE `pessoa` (
   `n_fornecedor_fornecedor` int,
   `n_tipopessoa_tipopessoa` int,
   `s_nome_pessoa` varchar(255),
+  `s_email_pessoa` varchar(255),
+  `s_senha_pessoa` varchar(255),
+  `n_primacess_pessoa` int,
   `s_foto_pessoa` mediumtext,
   `c_status_pessoa` char
 );
