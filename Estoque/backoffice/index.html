@@ -10,12 +10,51 @@
     </head>
     <body>
 
-        <div id="login">
+        <div  id="primeiroAcessso" class="popup ocultarPopup">
+            <div class="janelaPopup">
+                <div class="tituloPopup">
+                    <div id="tituloPopup">Definição de Senha</div>
+                    <img src="../../imgs/fechar.svg" class="btn_janelaopera" id="btn_fecharPopupDefSenha">
+                </div>
+                <div class="corpoPopup">
+                    <div class="campoForm">
+                        <label>E-Mail</label>
+                        <input type="email" id="emaildefsenha" name="emaildefsenha">
+                    </div>
+                    <div class="campoForm">
+                        <label>Senha</label>
+                        <input type="password" id="f_senha1" name="f_senha1">
+                    </div>
+                    <div class="campoForm">
+                        <label>Redigite a Senha</label>
+                        <input type="password" id="f_senha2" name="f_senha2">
+                    </div>
+                </div>
+                <div class="rodapePopup">
+                    <button id="btn_gravarSenha" class="btn_comandoPopup">Gravar</button>
+                </div>
+            </div>
+        </div>
 
-            <input type="text" id="f_username" name="f_username">
-            <input type="password" id="f_senha" name="f_senha">
-            <button id="btn_login">Login</button>
-
+        <div id="login" class="popup">
+            <div class="janelaPopup">
+                <div class="tituloPopup">
+                    <div id="tituloPopup">Login</div>
+                </div>
+                <div class="corpoPopup">
+                    <div class="campoForm">
+                        <label>E-Mail</label>
+                        <input type="email" id="f_email" name="f_email">
+                    </div>
+                    <div class="campoForm">
+                        <label>Senha</label>
+                        <input type="password" id="f_senha" name="f_senha">
+                    </div>
+                </div>
+                <div class="rodapePopup">
+                    <button id="btn_login" class="btn_comandoPopup">Login</button>
+                </div>
+            </div>
         </div>
 
         <script src="../estoque_geral.js" type="module"></script>
