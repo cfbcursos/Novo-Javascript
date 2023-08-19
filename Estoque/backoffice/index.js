@@ -37,11 +37,13 @@ btn_login.addEventListener("click",(evt)=>{
         fetch(endpoint)
         .then(res=>res.json())
         .then(res=>{
-            if(res[0].retorno==200){ //OK
-                sessionStorage.setItem("n_pessoa_pessoa",res[0].n_pessoa_pessoa);
-                sessionStorage.setItem("s_nome_pessoa",res[0].s_nome_pessoa);
+            if(res.retorno==200){ //OK
+                sessionStorage.setItem("n_pessoa_pessoa",res.n_pessoa_pessoa);
+                sessionStorage.setItem("s_nome_pessoa",res.s_nome_pessoa);
+                sessionStorage.setItem("n_token_token",res.insertId);
+                sessionStorage.setItem("s_token_token",res.token);
                 window.location.href="./main.html";
-            }else if(res[0].retorno==208){ //Senha errada
+            }else if(res.retorno==208){ //Senha errada
                 const config={
                     titulo:"Erro",
                     texto:"Senha Incorreta",
@@ -52,9 +54,9 @@ btn_login.addEventListener("click",(evt)=>{
                     nao:()=>{}
                 }
                 Cxmsg.mostrar(config);
-            }else if(res[0].retorno==205){ //Primeiro Acesso
+            }else if(res.retorno==205){ //Primeiro Acesso
                 console.log("Primeiro Acesso");
-                iddefsenha.value=res[0].n_pessoa_pessoa;
+                iddefsenha.value=res.n_pessoa_pessoa;
                 emaildefsenha.value=f_email.value;
                 login.classList.add("ocultarPopup");
                 primeiroAcessso.classList.remove("ocultarPopup");
